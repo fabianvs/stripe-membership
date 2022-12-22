@@ -1,0 +1,12 @@
+{% extends 'base.html'  %}
+{% block container %}
+	<form id="return-form" method="POST" action="{{transaction.urlRedirection}}" class="pure-form pure-form-stacked">
+		<input type="hidden" name="token_ws" value="{{ token }}">
+		<button type="submit">Send to TBK</button>
+	</form>
+	<script type="text/javascript">
+		window.localStorage.clear()
+		window.localStorage.setItem("buyOrder", {{transaction.buyOrder}} )
+		document.getElementById('return-form').submit()
+	</script>
+{% endblock container %}

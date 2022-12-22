@@ -4,6 +4,7 @@ from django.urls import path
 from django.conf.urls.static import static
 #local urls
 from User import views as user_views
+from User.webpay import views as webpay
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +28,8 @@ urlpatterns = [
     path('post/update/<int:pk>', user_views.Post_fileUpdateView.as_view(), name='update_post'),
     path('post/delete/<int:pk>', user_views.Post_fileDeleteView.as_view(), name='delete_post'),
     path('file/delete/<int:pk>', user_views.DocumentDeleteView.as_view(), name='delete_file'),
+
+    path('pagar', webpay.TbkInit.as_view(), name='init_transaction')
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

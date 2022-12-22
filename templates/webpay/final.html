@@ -1,0 +1,37 @@
+{% extends 'base.html'  %}
+{% block container %}
+{% block title %}COMPRA COMPLETADA{% endblock %}
+{% if buy_order %}
+<div class="container">
+	<div class="row justify-content-md-center align-items-center">
+		<div class="card shadow mt-4 col-md-8 col-12 mx-auto">
+			<div class="card-body">
+				<h5 class="card-title">Orden de Compra #{{buy_order.id}}</h5>
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">Producto</th>
+							<th scope="col">Precio</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">{{buy_order.license_type.name}}</th>
+							<td>{{buy_order.license_type.price}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
+</div>
+{% else %}
+<form method="POST" id="form-wp">
+	<input type="hidden" id="buy_order" name="buy_order">
+</form>
+<script type="text/javascript">
+	document.getElementById('buy_order').value = window.localStorage.getItem('buyOrder')
+	document.getElementById('form-wp').submit()
+</script>
+{% endif %}
+{% endblock container %}
