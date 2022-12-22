@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block headcontent %}
+    <title>Tareas</title>
+{% endblock headcontent %}
+    
+
+{% block container %}
+
+<div class="row">
+    <div class="card">
+      <div class="card-body">
+        <form method="get">
+          <div id="custom-search-input">
+              <div class="input-group col md-12"></div>
+              <input type="text" class="form-control" placeholder="Buscar.." name="buscar">
+              <span class="input-group-list"></span>
+              <button type="submit" class="btn btn-primary">Buscar</button>
+              <a href="{% url "post_file"%}" class="btn btn-success">Nueva Publicación</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    {% for item in items %}
+
+    <div class="card" >
+        <div class="card-body">
+          <h5 class="card-title">{{ item.post_title }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ item.file_rel.file_type }}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">{{ item.created }}</h6>
+          <p class="card-text">{{ item.post_desc }}</p>
+          <a class="btn btn-primary" href="{{ item.file_rel.doc_path.url }}">Descargar</a>
+          <a class="btn btn-primary" href="{% url 'update_post' item.pk %}">Editar</a>
+          <a class="btn btn-danger" href="{% url 'delete_post' item.pk %}">Eliminar</a>
+        </div>
+      </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

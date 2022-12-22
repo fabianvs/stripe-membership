@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head_content %}
+<title>Inicio</title>
+{% endblock %}
+{% block container %}
+<div class="row">
+  <div class="mt-5">
+    
+    <div class="card">
+      <h5 class="card-header">Listar Profesores</h5>
+      <div class="card-body">
+        <h5 class="card-title">Busca los Profesores que pueden ayudarte</h5>
+        <a href="{% url "prof_list"%}" class="btn btn-secondary">Listar</a>
+      </div>
+    </div>
+    <div class="card">
+      <h5 class="card-header">Ver tus archivos</h5>
+      <div class="card-body">
+        <h5 class="card-title">Sube el archivo de tu tarea</h5>
+        <a href="{% url "doc_list"%}" class="btn btn-secondary">Listar</a>
+      </div>
+    </div>
+    <div class="card">
+      <h5 class="card-header">Ver las propuestas</h5>
+      <div class="card-body">
+        <h5 class="card-title">Busca las tareas en las que puedes colaborar</h5>
+        <a href="{% url "post_list"%}" class="btn btn-secondary">Listar</a>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+    {% endblock %}

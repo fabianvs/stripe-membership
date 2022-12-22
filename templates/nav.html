@@ -1,0 +1,11 @@
+{% load static %}
+
+<nav class="navbar fixed-top navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url "home" %}">Inicio</a>
+      <form class="d-flex">
+        <a href="{% url "profile"%}" class="btn btn-primary">Perfil</a>
+        <a href="{% url "logout"%}" class="btn btn-secondary">Cerrar Sesion</a>
+      </form>
+  </div>
+</nav>

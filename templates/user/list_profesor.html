@@ -1,0 +1,51 @@
+
+{% extends "base.html" %}
+
+{% block head_content %}
+    <title>Platzigram</title>
+{% endblock%}
+
+{% load static %}
+
+{% block container %}
+<div class="row">
+  <div class="card">
+    <div class="card-body">
+      <form method="get">
+        <div id="custom-search-input">
+            <div class="input-group col md-12"></div>
+            <input type="text" class="form-control" placeholder="Buscar.." name="buscar">
+            <span class="input-group-list"></span>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+    </div>
+  </div>
+    
+  </form>
+            {% if profesors %}
+            {% for profesor in profesors %}
+            
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    {% if profesor.picture %}
+                    <img src="{{ profesor.picture.url }}" alt="..." style=" width: 170px ;">
+                    {% else %}
+                    <img src="{% static 'img/default-profile.png' %}" alt="..." style=" width: 170px ;">
+                    {% endif %}
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ profesor.user.username }}</h5>
+                      <p class="card-text">{{ profesor.university }}</p>
+                      <p class="card-text">{{ profesor.carrer }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            {% endfor %}
+            {% endif %}
+  </div>
+{% endblock %}

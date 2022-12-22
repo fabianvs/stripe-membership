@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block headcontent %}
+    <title>Tus Archivos</title>
+{% endblock headcontent %}
+    
+
+{% block container %}
+
+<div class="row">
+    <div class="card">
+      <div class="card-body">
+        <form method="get">
+          <div id="custom-search-input">
+              <div class="input-group col md-12"></div>
+              <input type="text" class="form-control" placeholder="Buscar.." name="buscar">
+              <span class="input-group-list"></span>
+              <button type="submit" class="btn btn-primary">Buscar</button>
+              <a href="{% url "upload_file"%}" class="btn btn-success">Crear archivo</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+    {% if documents %}
+    {% for document in documents %}
+            
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    {% if document.doc_img %}
+                    <img src="{{ document.doc_img.url }}" alt="..." style=" width: 170px ;">
+                    {% else %}
+                    <img src="{% static 'img/default-doc.png' %}" alt="..." style=" width: 170px ;">
+                    {% endif %}
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ document.file_name }}</h5>
+                      <p class="card-text">{{ document.file_type }}</p>
+                      <p class="card-text">{{ document.file_desc }}</p>
+                      <p class="card-text">{{ document.stu_rel.username }}</p>
+                      <a class="btn btn-primary" href="{% url 'update_file' document.pk %}">Editar</a>
+                      <a class="btn btn-danger" href="{% url 'delete_file' document.pk %}">Eliminar</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+    {% endfor %}
+    {% endif %}
+
+
+{% endblock container %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block headcontent %}
+    <title>Perfil de empleado</title>
+{% endblock headcontent %}
+    
+
+{% block container %}
+
+
+    <form action="#" style="margin-top: 15px;">
+        {% if user.is_authenticated %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{profile.user.username}}</h5>
+              <img src="" alt="">
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{profile.user.first_name}}</li>
+              <li class="list-group-item">{{profile.user.last_name}}</li>
+              <li class="list-group-item">{{profile.user.email}}</li>
+              <li class="list-group-item">{{profile.birthday}}</li>
+              <li class="list-group-item">{{profile.university}}</li>
+              <li class="list-group-item">{{profile.carrer}}</li>
+              <li class="list-group-item">{{profile.description}}</li>
+            </ul>
+            <div class="card-body">
+              <a href="{% url 'profile_update' request.user.pk%}" class="btn btn-secondary">Editar</a>
+             
+            </div>
+          </div>
+        {% else %}
+            <p>Error de comunicacion con la base de datos</p>
+        {% endif %}
+            
+    </form>
+{% endblock container %}

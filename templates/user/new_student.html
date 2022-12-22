@@ -1,0 +1,30 @@
+{% extends "user/base_user.html" %}
+
+{% block head_content %}
+<title>Creando Cliente</title>
+{% endblock%}
+
+{% block container %}
+<style>
+    form{
+        margin-top: 20px;
+     } 
+</style>
+<div>
+    <div class="card">
+        <div class="card-body">
+            <form action="{% url 'add_student' %}" method="POST">
+                {% csrf_token %}
+                <div class="input-group input-group-sm mb-3">
+                        {{ form.as_p }}
+                </div>
+                <button class="btn btn-primary btn-block " type="submit">Registrarse</button>
+                <a class="btn btn-danger btn-block  href="{% url "roll"%}">Cancelar</a>
+            
+            </form>
+        </div>
+      </div>
+
+</div>
+    
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+<title>Creando Cliente</title>
+{% endblock%}
+
+{% block container %}
+
+
+<div class="card">
+  <div class="card-body">
+    <form method="POST">
+      {% csrf_token %}
+      <h2>¿Desea elminar {{object}} ?</h2>
+        <button class="btn btn-primary" type = "submit">Eliminar</button>
+        <a class="btn btn-danger" href="{% url 'home' %}" >Cancelar</a>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "user/base_user.html" %}
+
+{% block head_content %}
+<title>Registro</title>
+{% endblock %}
+
+{% load static %}
+{% block container %}
+
+    {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+    {% endif %}
+    <div class="row">
+
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+              <img src="{% static 'img/student-img.jpg' %}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+              <div class="card-footer text-muted">
+                  <a href="{% url "add_student" %}" class="btn btn-primary">Estudiante</a>
+              </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+            <img src="{% static 'img/profesor-img.jpg' %}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div class="card-footer text-muted">
+                <a href="{% url "add_profesor" %}" class="btn btn-primary">Pofesor</a>
+              </div>
+          </div> 
+        </div>
+
+    </div>
+
+
+{% endblock %}
