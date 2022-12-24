@@ -5,12 +5,16 @@
 		<div class="card shadow mt-4 col-md-8 col-12 mx-auto">
 			<div class="card-body">
 				<h5 class="card-title">Orden de Compra {{transaction.buyOrder}} rechazada</h5>
-				<p>Las posibles causas de este rechazo son:</p>
-				<ul>
-					<li>Error en el ingreso de los datos de su tarjeta de Crédito o Débito (fecha y/o código de seguridad).</li>
-					<li>Su tarjeta de Crédito o Débito no cuenta con saldo suficiente.</li>
-					<li>Tarjeta aún no habilitada en el sistema financiero.</li>
-				</ul>
+				{% if transaction != None and error_code != 422 %}
+					<p>Las posibles causas de este rechazo son:</p>
+					<ul>
+						<li>Error en el ingreso de los datos de su tarjeta de Crédito o Débito (fecha y/o código de seguridad).</li>
+						<li>Su tarjeta de Crédito o Débito no cuenta con saldo suficiente.</li>
+						<li>Tarjeta aún no habilitada en el sistema financiero.</li>
+					</ul>
+				{% else %}
+					<p>Compra anulada</p>
+				{% endif %}
 			</div>
 		</div>
 	</div>	

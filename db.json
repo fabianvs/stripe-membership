@@ -1,0 +1,41 @@
+[
+{
+  "model": "User.subscription",
+  "pk": 1,
+  "fields": {
+    "name": "Profesor",
+    "description": "Suscripción de profesor",
+    "value": 3000
+  }
+},
+{
+  "model": "User.subscription",
+  "pk": 2,
+  "fields": {
+    "name": "Alumno",
+    "description": "Suscripción de alumno",
+    "value": 2000
+  }
+},
+{
+  "model": "User.orderstatus",
+  "pk": 1,
+  "fields": {
+    "name": "No Pagado"
+  }
+},
+{
+  "model": "User.orderstatus",
+  "pk": 2,
+  "fields": {
+    "name": "Pagado"
+  }
+},
+{
+  "model": "User.orderstatus",
+  "pk": 3,
+  "fields": {
+    "name": "En Proceso"
+  }
+}
+]

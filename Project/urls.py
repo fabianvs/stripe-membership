@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 #local urls
 from User import views as user_views
 from User.webpay import views as webpay
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,8 +29,9 @@ urlpatterns = [
     path('post/update/<int:pk>', user_views.Post_fileUpdateView.as_view(), name='update_post'),
     path('post/delete/<int:pk>', user_views.Post_fileDeleteView.as_view(), name='delete_post'),
     path('file/delete/<int:pk>', user_views.DocumentDeleteView.as_view(), name='delete_file'),
-
-    path('pagar', webpay.TbkInit.as_view(), name='init_transaction')
+    # TBK Views
+    path('suscripcion/<int:pk>', webpay.TbkInit.as_view(), name='tbk_init'),
+    path('suscripcion/return/', csrf_exempt(webpay.TbkReturn.as_view()), name='tbk_return'),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

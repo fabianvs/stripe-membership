@@ -15,7 +15,7 @@ from django.db.models import Q
 #Forms imports
 from .forms import SignupForm, StudentForm, ProfesorForm, UserUpdateForm, DocumentForm, Post_fileForm
 #Models imports
-from .models import Student, Profesor, Pay_method, Document, Post_file
+from .models import Student, Profesor, Document, Post_file, OrderStatus, Order, Subscription
 
 def login_view(request):
 
@@ -115,7 +115,17 @@ def profesor_create(request, Profesor_ID=None, **kwargs):
         form = ProfesorForm(request.POST, request.FILES, instance=pro_ints)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            # CREAR ORDEN
+            order_status = OrderStatus.objects.get(pk=1)
+            subscription=Subscription.objects.get(pk=1)
+            order = Order.objects.create(
+                user=user,
+                subscription=subscription,
+                tax=subscription.value*0.19,
+                total=subscription.value*1.19,
+                status=order_status
+            )
+            return redirect('tbk_init', pk=order.pk)
 
     else:
         form = ProfesorForm(instance=profesor)

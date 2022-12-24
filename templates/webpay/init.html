@@ -9,8 +9,10 @@
                         Checkout
                     </div>
                   <div class="card-body">
-                    <p>Usted está comprando una suscripción de CLP {{subscription.value}}</p>
-                    <p>El plan seleccionado es: {{subscription.name}}</p>
+                    <p>Usted está comprando una suscripción de CLP ${{order.subscription.value}}</p>
+                    <p>Impuesto (19%): ${{order.tax}}</p>
+                    <p>El plan seleccionado es: {{order.subscription.name}}</p>
+                    <p>Total de la orden: ${{order.total}}</p>
                     <form method="POST" action="{{ transaction.url }}" class="pure-form pure-form-stacked">
                         <input type="hidden" name="token_ws" value="{{ transaction.token }}">
                         <button class="btn btn-success">PAGAR</button>

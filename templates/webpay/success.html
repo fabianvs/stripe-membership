@@ -1,12 +1,82 @@
 {% extends 'base.html'  %}
 {% block container %}
-	<form id="return-form" method="POST" action="{{transaction.urlRedirection}}" class="pure-form pure-form-stacked">
-		<input type="hidden" name="token_ws" value="{{ token }}">
-		<button type="submit">Send to TBK</button>
-	</form>
-	<script type="text/javascript">
-		window.localStorage.clear()
-		window.localStorage.setItem("buyOrder", {{transaction.buyOrder}} )
-		document.getElementById('return-form').submit()
-	</script>
+<div class="row pt-4">
+	<div class="col-12">
+		<h3>TRANSACCIÓN EXITOSA</h3>
+	</div>
+</div>
+<div class="row pt-3">
+	<div class="col-12">
+		<p>Detalle de la transacción</p>
+	</div>
+</div>
+<div class="row pt-3">
+	<div class="col-12">
+		<table class="table">
+			<thead class="table-dark">
+				<th colspan="2">Detalle de la transacción</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Nº de Orden:</td>
+					<td>{{payment.buy_order}}</td>
+				</tr>
+				<tr>
+					<td>Monto:</td>
+					<td id="amount">{{payment.amount}}</td>
+				</tr>
+				<tr>
+					<td>Nº de tarjeta:</td>
+					<td>**** **** **** {{payment.card_number}}</td>
+				</tr>
+				<tr>
+					<td>Fecha de la autorización:</td>
+					<td>{{payment.accounting_date }}</td>
+				</tr>
+				<tr>
+					<td>Fecha y hora de la autorización:</td>
+					<td id="date">{{payment.transaction_date }}</td>
+				</tr>
+				<tr>
+					<td>Código de autorización:</td>
+					<td>{{payment.authorization_code}}</td>
+				</tr>
+				{% if payment.installments_amount %}
+				<tr>
+					<td>Monto de las cuotas:</td>
+					<td>{{payment.installments_amount}}</td>
+				</tr>
+				{% endif %}
+				{% if payment.installments_number %}
+				<tr>
+					<td>Cantidad de cuotas:</td>
+					<td>{{payment.installments_number}}</td>
+				</tr>
+				{% endif %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<script src="https://momentjs.com/downloads/moment-with-locales.min.js" type="text/javascript"></script>
+<script>
+
+	function numberWithCommas(x) {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
+	document.addEventListener("DOMContentLoaded", function(event) {
+		moment.locale('es-mx');
+		let date = document.getElementById("date").textContent;
+		let new_date = moment(date).format('DD MMMM YYYY, h:mm:ss a');
+		document.getElementById("date").textContent = new_date
+
+		let amount = document.getElementById("amount").textContent;
+		let new_amount = numberWithCommas(parseInt(amount))
+		document.getElementById("amount").textContent=`$${new_amount}`;
+	});
+	
+</script>
+
+	
 {% endblock container %}
